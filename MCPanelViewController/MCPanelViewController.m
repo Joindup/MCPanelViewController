@@ -134,23 +134,7 @@ const static NSString *MCPanelViewGestureAnimationDirectionKey = @"MCPanelViewGe
 
 - (void)layoutSubviewsToWidth:(CGFloat)width {
     CGRect bounds = self.parentViewController.view.bounds;
-    if (width > self.maxWidth) {
-        CGFloat offset = 0;
-        CGFloat shadowOffset = width - self.maxWidth;
-
-        if (self.direction == MCPanelAnimationDirectionLeft) {
-        }
-        else {
-            offset = CGRectGetWidth(bounds)-width;
-            shadowOffset = offset;
-        }
-
-        self.backgroundButton.alpha = 1;
-        self.imageView.frame = CGRectMake(offset, 0, width, self.maxHeight);
-        self.shadowView.frame = CGRectMake(shadowOffset, 0, width, self.maxHeight);
-        self.rootViewController.view.frame = CGRectMake(offset, 0, width, self.maxHeight);
-    }
-    else {
+    if (width <= self.maxWidth) {
         CGFloat offset = 0;
         CGRect frame = CGRectZero;
         if (self.direction == MCPanelAnimationDirectionLeft) {
@@ -316,6 +300,8 @@ const static NSString *MCPanelViewGestureAnimationDirectionKey = @"MCPanelViewGe
     else {
         self.imageView.image = image;
     }
+	
+	UIGraphicsEndImageContext();
 }
 
 #pragma mark - Gestures
