@@ -13,8 +13,8 @@
 
 #import <objc/runtime.h>
 
-const static CGFloat MCPanelViewAnimationDuration = 0.3;
-const static CGFloat MCPanelViewGestureThreshold = 0.6;
+const static CGFloat MCPanelViewAnimationDuration = 0.15f;
+const static CGFloat MCPanelViewGestureThreshold = 0.6f;
 
 const static NSString *MCPanelViewGestureViewControllerKey = @"MCPanelViewGestureViewControllerKey";
 const static NSString *MCPanelViewGestureAnimationDirectionKey = @"MCPanelViewGestureAnimationDirectionKey";
@@ -120,6 +120,16 @@ const static NSString *MCPanelViewGestureAnimationDirectionKey = @"MCPanelViewGe
     
     [self.view addSubview:self.shadowView];
     [self.view addSubview:self.imageView];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+	[[[self navigationController] interactivePopGestureRecognizer] setEnabled:NO];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+	[super viewWillDisappear:animated];
+	[[[self navigationController] interactivePopGestureRecognizer] setEnabled:YES];
 }
 
 - (void)setMasking:(BOOL)masking {
