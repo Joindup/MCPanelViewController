@@ -310,8 +310,6 @@ const static NSString *MCPanelViewGestureAnimationDirectionKey = @"MCPanelViewGe
     else {
         self.imageView.image = image;
     }
-	
-	UIGraphicsEndImageContext();
 }
 
 #pragma mark - Gestures
